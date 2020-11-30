@@ -26,7 +26,7 @@ public void OnPluginEnd()
     for (int i = 0; i < sizeof(keys); i++) Keys_UnregKey(keys[i]);
 }
 
-public int Keys_OnCoreStarted()
+public void Keys_OnCoreStarted()
 {
     for (int i = 0; i < sizeof(keys); i++) 
         Keys_RegKey(keys[i], OnKeyParamsValidate, OnKeyUse, OnKeyPrint);
@@ -48,7 +48,7 @@ public bool:OnKeyParamsValidate(iClient, const String:sKeyType[], Handle:hParams
         if (!StrEqual(sKeyType, keys[i], false)) continue;
 
         GetArrayString(hParamsArr, 0, param, KEYS_MAX_LENGTH);
-        StringToInt(param, iParam);
+        iParam = StringToInt(param);
 
         if (iParam <= 0) 
         {
